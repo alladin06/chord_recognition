@@ -206,26 +206,13 @@ def index():
 
 @app.route('/process_realtime_audio', methods=['POST'])
 def process_audio():
-    print("DDDDD00")
-    print("DDDDD00")
-    print("DDDDD00")
-    print("DDDDD00")
-    print("DDDDD00")
 
     # Check if the file was sent in the POST request
     if 'audio' not in request.files:
         return jsonify({'error': 'No file part'})
-    print("DDDDD01")
-    print("DDDDD01")
-    print("DDDDD01")
-    print("DDDDD01")
     
     try:
         # Save the uploaded file to a temporary location
-        print("DDDDD02")
-        print("DDDDD02")
-        print("DDDDD02")
-        print("DDDDD02")
 
         file = request.files['audio']
         file.save(file.filename)
@@ -235,7 +222,6 @@ def process_audio():
 
         # Load the audio file and obtain the mono audio signal and sampling frequency
         print("input getting")
-        print(file.filename)
         audio_data, sample_rate = librosa.load(file.filename, sr=None, mono=True)
         # audio_data,sample_rate = read(file.filename)
         print("input not getting")
@@ -275,63 +261,13 @@ def process_audio():
         print(final_chords)
         final_ch = ""
         for i in range(len(final_chords)):
-             if(final_chords[i] == 'A'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'A#'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'B'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'C'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'C#'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'D'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'D#'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'E'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'E#'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'G'):
-                 print("The Identified Chord is")
-                 print(final_chords[i])
-                 final_ch = final_chords[i]
-                 break
-             if(final_chords[i] == 'G#'):
+             if(final_chords[i] != 'N'):
                  print("The Identified Chord is")
                  print(final_chords[i])
                  final_ch = final_chords[i]
                  break
         print("over")
-        print(final_ch)
+        print('finally' + final_ch)
         
         # Return the mono audio signal and sampling frequency
         return jsonify({
