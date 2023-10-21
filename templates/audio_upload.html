@@ -21,21 +21,37 @@
             padding: 10px;
             cursor: pointer;
         }
+
+        #record-button:hover {
+            background-color: #008cff;
+            outline: 2px solid #007bff;
+            outline-offset: 1px;
+        }
+
+        #record-button:active {
+            background-color: #008cff;
+            outline: 2px solid #007bff;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 
-<body>
-    <h1>Real-time Audio Recording</h1>
-    <button id="record-button">Record</button>
+<body style="overflow-x: hidden;">
+    <h1 style="font-size: 3rem;">Real-time Audio Recording</h1>
 
-    <h1>-------------------FS--------------------</h1>
-    <div id="fs"></div>
+    <button style="padding: 1rem 2rem; font-size: 1rem; font-weight: 600; border-radius: 1rem;"
+        id="record-button" autofocus>Record</button>
 
-    <h1>-------------------X--------------------</h1>
-    <div id="x"></div>
-    <h1>-------------------chord--------------------</h1>
-    <div id="final_chord"></div>
-    
+    <div style="display: flex ; width: 100vw; justify-content: center; align-items: center; font-size: 2.5rem; font-weight: 600;">
+        <p style="padding-right: 1rem;">FS : </p>
+        <span style="padding: 0.5rem 1rem; background-color: aquamarine; border-radius: 1rem;" id="fs">0</span>
+    </div>
+
+    <div style="display: flex ; width: 100vw; justify-content: center; align-items: center; font-size: 2.5rem; font-weight: 600;">
+        <p style="padding-right: 1rem;">Chord : </p>
+        <span style="padding: 0.5rem 1rem; background-color: aquamarine; border-radius: 1rem;" id="final_chord">0</span>
+    </div>
+
 
     <script>
         let mediaRecorder;
@@ -69,11 +85,11 @@
                             } else {
                                 // Display the audio data and sample rate
                                 console.log("Mono Audio Signal: " + JSON.stringify(data.x));
-                                document.getElementById('x').innerText = JSON.stringify(data.x)
+                                // document.getElementById('x').innerText = JSON.stringify(data.x)
                                 console.log("Sampling Frequency: " + data.fs + " Hz");
                                 document.getElementById('fs').innerText = JSON.stringify(data.fs + " Hz")
-                                console.log("Sampling Frequency: " + data.final_chord + " Hz");
-                                document.getElementById('final_chord').innerText = JSON.stringify(data.final_chord + " Hz")
+                                console.log("Sampling Frequency: " + data.final_chord);
+                                document.getElementById('final_chord').innerText = data.final_chord
                             }
                         });
 
