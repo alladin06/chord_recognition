@@ -3,3 +3,4 @@ librosa==0.10.0
 matplotlib==3.7.1
 numpy==1.23.5
 scipy==1.11.3
+gunicorn==21.2.0
